@@ -1,0 +1,11 @@
+import "./Logo.css";
+
+function Logo() {
+  return (
+    <div className="logo">
+      <h1 className="logo-title">Fundoo Notes</h1>
+    </div>
+  );
+}
+
+export default Logo;

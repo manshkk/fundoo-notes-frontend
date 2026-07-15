@@ -1,0 +1,51 @@
+.sidebar .MuiDrawer-paper {
+
+    overflow-x: hidden;
+
+}
+
+.sidebar-item {
+
+    height: 48px;
+
+    margin: 4px 12px !important;
+
+    border-radius: 0 24px 24px 0 !important;
+
+    transition: 0.2s ease;
+
+}
+
+.sidebar-item:hover {
+
+    background: #f1f3f4 !important;
+
+}
+
+.sidebar-item.Mui-selected {
+
+    background: #FEEFC3 !important;
+
+}
+
+.sidebar-item.Mui-selected:hover {
+
+    background: #FDD663 !important;
+
+}
+
+.sidebar-item .MuiListItemIcon-root {
+
+    color: #5f6368;
+
+    min-width: 48px;
+
+}
+
+.sidebar-item .MuiTypography-root {
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+}

@@ -1,0 +1,61 @@
+.auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-header h2 {
+    margin-top: 20px;
+    margin-bottom: 8px;
+    font-size: 32px;
+    font-weight: 400;
+    color: #202124;
+}
+
+.auth-header p {
+    margin: 0;
+    font-size: 16px;
+    color: #5f6368;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.name-row {
+    display: flex;
+    gap: 16px;
+}
+
+.name-row .input-group {
+    flex: 1;
+}
+
+.register-footer {
+    display: flex;
+    justify-content: flex-start;
+    margin: 15px 0 25px;
+}
+
+.login-link {
+    background: none;
+    border: none;
+    color: #1a73e8;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+
+    .name-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+}

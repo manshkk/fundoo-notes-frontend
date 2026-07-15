@@ -1,0 +1,7 @@
+.auth-card {
+    width: 420px;
+    background: #ffffff;
+    padding: 48px 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(60, 64, 67, 0.15);
+}

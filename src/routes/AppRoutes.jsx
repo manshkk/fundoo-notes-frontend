@@ -4,16 +4,30 @@ import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import ForgotPassword from "../pages/auth/ForgotPassword";
 import ResetPassword from "../pages/auth/ResetPassword";
+import Dashboard from "../pages/dashboard/Dashboard";
+
+import ProtectedRoute from "./ProtectedRoute";
 
 function AppRoutes() {
+
   return (
+
     <Routes>
-      {/* Redirect "/" to "/login" */}
-      <Route path="/" element={<Navigate to="/login" replace />} />
 
-      <Route path="/login" element={<Login />} />
+      <Route
+        path="/"
+        element={<Navigate to="/login" replace />}
+      />
 
-      <Route path="/register" element={<Register />} />
+      <Route
+        path="/login"
+        element={<Login />}
+      />
+
+      <Route
+        path="/register"
+        element={<Register />}
+      />
 
       <Route
         path="/forgot-password"
@@ -25,10 +39,26 @@ function AppRoutes() {
         element={<ResetPassword />}
       />
 
-      {/* Fallback for unknown URLs */}
-      <Route path="*" element={<Navigate to="/login" replace />} />
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+
+            <Dashboard />
+
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="*"
+        element={<Navigate to="/login" replace />}
+      />
+
     </Routes>
+
   );
+
 }
 
 export default AppRoutes;

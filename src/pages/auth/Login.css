@@ -1,0 +1,42 @@
+.auth-header {
+    text-align: center;
+    margin-bottom: 36px;
+}
+
+.auth-header h2 {
+    margin-top: 18px;
+    margin-bottom: 10px;
+
+    font-size: 34px;
+    font-weight: 400;
+
+    color: #202124;
+}
+
+.auth-header p {
+    color: #5f6368;
+    font-size: 16px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.forgot-password {
+    align-self: flex-end;
+
+    margin-top: -8px;
+    margin-bottom: 24px;
+
+    color: #1a73e8;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}

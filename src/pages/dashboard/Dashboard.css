@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #ffffff;
+    font-family: Roboto, Arial, sans-serif;
+}
+
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+    background: #ffffff;
+}
+
+.dashboard-main {
+    flex: 1;
+    margin-left: 280px;
+    margin-top: 64px;
+    display: flex;
+    justify-content: center;
+    padding: 40px 30px;
+}
+
+.dashboard-content {
+    width: 100%;
+    max-width: 650px;
+}
+
+.notes-grid {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 30px;
+}
