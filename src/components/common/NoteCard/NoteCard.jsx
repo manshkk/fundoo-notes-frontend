@@ -1,9 +1,9 @@
 import {
-  Card,
-  CardContent,
-  Typography,
-  Box,
-  IconButton
+    Card,
+    CardContent,
+    Typography,
+    Box,
+    IconButton
 } from "@mui/material";
 
 import PushPinOutlinedIcon from "@mui/icons-material/PushPinOutlined";
@@ -16,11 +16,16 @@ import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 
 import "./NoteCard.css";
 
-function NoteCard() {
+function NoteCard({ note }) {
 
     return (
 
-        <Card className="note-card">
+        <Card
+            className="note-card"
+            sx={{
+                backgroundColor: note.color || "#ffffff"
+            }}
+        >
 
             <CardContent>
 
@@ -30,9 +35,7 @@ function NoteCard() {
                         variant="h6"
                         className="note-title"
                     >
-
-                        Welcome to Fundoo Notes
-
+                        {note.title}
                     </Typography>
 
                     <PushPinOutlinedIcon
@@ -45,48 +48,33 @@ function NoteCard() {
                     variant="body2"
                     className="note-description"
                 >
-
-                    Tomorrow your notes from SQL Server
-                    will be displayed here.
-
+                    {note.content}
                 </Typography>
 
                 <Box className="note-actions">
 
                     <IconButton size="small">
-
-                        <NotificationsNoneOutlinedIcon fontSize="small"/>
-
+                        <NotificationsNoneOutlinedIcon fontSize="small" />
                     </IconButton>
 
                     <IconButton size="small">
-
-                        <PersonAddAltOutlinedIcon fontSize="small"/>
-
+                        <PersonAddAltOutlinedIcon fontSize="small" />
                     </IconButton>
 
                     <IconButton size="small">
-
-                        <PaletteOutlinedIcon fontSize="small"/>
-
+                        <PaletteOutlinedIcon fontSize="small" />
                     </IconButton>
 
                     <IconButton size="small">
-
-                        <ImageOutlinedIcon fontSize="small"/>
-
+                        <ImageOutlinedIcon fontSize="small" />
                     </IconButton>
 
                     <IconButton size="small">
-
-                        <ArchiveOutlinedIcon fontSize="small"/>
-
+                        <ArchiveOutlinedIcon fontSize="small" />
                     </IconButton>
 
                     <IconButton size="small">
-
-                        <MoreVertOutlinedIcon fontSize="small"/>
-
+                        <MoreVertOutlinedIcon fontSize="small" />
                     </IconButton>
 
                 </Box>
