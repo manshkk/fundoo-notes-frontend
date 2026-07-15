@@ -13,10 +13,6 @@ function Dashboard() {
 
     const [notes, setNotes] = useState([]);
 
-    useEffect(() => {
-        fetchNotes();
-    }, []);
-
     const fetchNotes = async () => {
 
         try {
@@ -27,7 +23,8 @@ function Dashboard() {
 
             setNotes(response);
 
-        } catch (error) {
+        }
+        catch (error) {
 
             console.error("Get Notes Error:", error);
 
@@ -35,8 +32,33 @@ function Dashboard() {
 
     };
 
+    useEffect(() => {
+
+        fetchNotes();
+
+    }, []);
+
+    const handleCreateNote = async (noteData) => {
+
+        try {
+
+            await noteService.createNote(noteData);
+
+            await fetchNotes();
+
+        }
+        catch (error) {
+
+            console.error("Create Note Error:", error);
+
+        }
+
+    };
+
     return (
+
         <>
+
             <Header />
 
             <Sidebar />
@@ -45,42 +67,48 @@ function Dashboard() {
 
                 <div className="dashboard-content">
 
-                    <CreateNote />
+                    <CreateNote
+                        onCreateNote={handleCreateNote}
+                    />
 
                     <div className="notes-grid">
 
-                        {notes.length > 0 ? (
+                        {
+                            notes.length > 0 ?
 
-                            notes.map((note) => (
+                                notes.map((note) => (
 
-                                <NoteCard
-                                    key={note.id}
-                                    note={note}
-                                />
+                                    <NoteCard
+                                        key={note.id}
+                                        note={note}
+                                    />
 
-                            ))
+                                ))
 
-                        ) : (
+                                :
 
-                            <h3
-                                style={{
-                                    textAlign: "center",
-                                    marginTop: "40px",
-                                    color: "#777"
-                                }}
-                            >
-                                No Notes Available
-                            </h3>
+                                <h3
+                                    style={{
+                                        marginTop: 40,
+                                        textAlign: "center",
+                                        color: "#666"
+                                    }}
+                                >
+                                    No Notes Available
+                                </h3>
 
-                        )}
+                        }
 
                     </div>
 
                 </div>
 
             </main>
+
         </>
+
     );
+
 }
 
 export default Dashboard;

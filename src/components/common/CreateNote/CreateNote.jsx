@@ -1,8 +1,11 @@
+import { useState } from "react";
+
 import {
-  Card,
-  Box,
-  InputBase,
-  IconButton
+    Card,
+    Box,
+    InputBase,
+    IconButton,
+    Button
 } from "@mui/material";
 
 import CheckBoxOutlinedIcon from "@mui/icons-material/CheckBoxOutlined";
@@ -11,46 +14,139 @@ import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
 
 import "./CreateNote.css";
 
-function CreateNote() {
+function CreateNote({ onCreateNote }) {
 
-  return (
+    const [expanded, setExpanded] = useState(false);
 
-    <Card className="create-note">
+    const [note, setNote] = useState({
+        title: "",
+        content: ""
+    });
 
-      <Box className="create-note-container">
+    const handleChange = (event) => {
 
-        <InputBase
-          placeholder="Take a note..."
-          className="note-input"
-        />
+        const { name, value } = event.target;
 
-        <Box className="note-icons">
+        setNote((previous) => ({
+            ...previous,
+            [name]: value
+        }));
 
-          <IconButton size="small">
+    };
 
-            <CheckBoxOutlinedIcon />
+    const handleClose = async () => {
 
-          </IconButton>
+        if (
+            note.title.trim() === "" &&
+            note.content.trim() === ""
+        ) {
+            setExpanded(false);
+            return;
+        }
 
-          <IconButton size="small">
+        try {
 
-            <BrushOutlinedIcon />
+            await onCreateNote(note);
 
-          </IconButton>
+            setNote({
+                title: "",
+                content: ""
+            });
 
-          <IconButton size="small">
+            setExpanded(false);
 
-            <ImageOutlinedIcon />
+        } catch (error) {
 
-          </IconButton>
+            console.error("Create Note Error:", error);
 
-        </Box>
+        }
 
-      </Box>
+    };
 
-    </Card>
+    return (
 
-  );
+        <Card className="create-note">
+
+            <Box
+                className="create-note-container"
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "stretch"
+                }}
+            >
+
+                {
+                    expanded && (
+
+                        <InputBase
+                            name="title"
+                            placeholder="Title"
+                            value={note.title}
+                            onChange={handleChange}
+                            fullWidth
+                            sx={{ mb: 1 }}
+                        />
+
+                    )
+                }
+
+                <InputBase
+                    name="content"
+                    placeholder="Take a note..."
+                    value={note.content}
+                    onChange={handleChange}
+                    onClick={() => setExpanded(true)}
+                    multiline
+                    fullWidth
+                />
+
+                {
+                    !expanded ? (
+
+                        <Box className="note-icons">
+
+                            <IconButton size="small">
+                                <CheckBoxOutlinedIcon />
+                            </IconButton>
+
+                            <IconButton size="small">
+                                <BrushOutlinedIcon />
+                            </IconButton>
+
+                            <IconButton size="small">
+                                <ImageOutlinedIcon />
+                            </IconButton>
+
+                        </Box>
+
+                    ) : (
+
+                        <Box
+                            sx={{
+                                display: "flex",
+                                justifyContent: "flex-end",
+                                mt: 2
+                            }}
+                        >
+
+                            <Button
+                                variant="text"
+                                onClick={handleClose}
+                            >
+                                Close
+                            </Button>
+
+                        </Box>
+
+                    )
+                }
+
+            </Box>
+
+        </Card>
+
+    );
 
 }
 
