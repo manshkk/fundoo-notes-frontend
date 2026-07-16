@@ -1,95 +1,96 @@
+import { useNavigate, useLocation } from "react-router-dom";
+
 import {
-  Drawer,
-  List,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Divider,
-  Box
+    Drawer,
+    List,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText
 } from "@mui/material";
 
 import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
-import LabelOutlinedIcon from "@mui/icons-material/LabelOutlined";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 
 import "./Sidebar.css";
 
-const drawerWidth = 280;
-
-const menuItems = [
-  {
-    title: "Notes",
-    icon: <LightbulbOutlinedIcon />
-  },
-  {
-    title: "Reminders",
-    icon: <NotificationsNoneOutlinedIcon />
-  },
-  {
-    title: "Labels",
-    icon: <LabelOutlinedIcon />
-  },
-  {
-    title: "Archive",
-    icon: <ArchiveOutlinedIcon />
-  },
-  {
-    title: "Trash",
-    icon: <DeleteOutlineOutlinedIcon />
-  }
-];
-
 function Sidebar() {
-  return (
-    <Drawer
-      variant="permanent"
-      className="sidebar"
-      sx={{
-        width: drawerWidth,
-        flexShrink: 0,
-        "& .MuiDrawer-paper": {
-          width: drawerWidth,
-          boxSizing: "border-box",
-          top: "64px",
-          height: "calc(100vh - 64px)",
-          borderRight: "1px solid #e0e0e0",
-          boxShadow: "none",
-          background: "#fff"
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const menus = [
+        {
+            text: "Notes",
+            icon: <LightbulbOutlinedIcon />,
+            path: "/dashboard"
+        },
+        {
+            text: "Reminders",
+            icon: <NotificationsNoneOutlinedIcon />,
+            path: "/reminders"
+        },
+        {
+            text: "Edit Labels",
+            icon: <EditOutlinedIcon />,
+            path: "/labels"
+        },
+        {
+            text: "Archive",
+            icon: <ArchiveOutlinedIcon />,
+            path: "/archive"
+        },
+        {
+            text: "Trash",
+            icon: <DeleteOutlineOutlinedIcon />,
+            path: "/trash"
         }
-      }}
-    >
-      <Box sx={{ height: 10 }} />
+    ];
 
-      <List>
+    return (
 
-        {menuItems.map((item, index) => (
+        <Drawer
+            variant="permanent"
+            className="sidebar"
+        >
 
-          <ListItemButton
-            key={index}
-            selected={index === 0}
-            className="sidebar-item"
-          >
+            <List>
 
-            <ListItemIcon>
+                {
 
-              {item.icon}
+                    menus.map((menu) => (
 
-            </ListItemIcon>
+                        <ListItemButton
+                            key={menu.text}
+                            className="sidebar-item"
+                            selected={location.pathname === menu.path}
+                            onClick={() => navigate(menu.path)}
+                        >
 
-            <ListItemText primary={item.title} />
+                            <ListItemIcon>
 
-          </ListItemButton>
+                                {menu.icon}
 
-        ))}
+                            </ListItemIcon>
 
-      </List>
+                            <ListItemText
+                                primary={menu.text}
+                            />
 
-      <Divider />
+                        </ListItemButton>
 
-    </Drawer>
-  );
+                    ))
+
+                }
+
+            </List>
+
+        </Drawer>
+
+    );
+
 }
 
 export default Sidebar;

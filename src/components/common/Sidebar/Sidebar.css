@@ -1,10 +1,48 @@
 .sidebar .MuiDrawer-paper {
 
+    width: 80px;
+
+    margin-top: 64px;
+
     overflow-x: hidden;
+
+    border-right: none;
+
+    background: #ffffff;
+
+    transition: width .25s ease;
+
+}
+
+.sidebar .MuiDrawer-paper:hover {
+
+    width: 280px;
+
+}
+
+.sidebar-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    height: 60px;
+
+}
+
+.sidebar .MuiList-root {
+
+    padding-top: 8px;
 
 }
 
 .sidebar-item {
+
+    display: flex !important;
+
+    align-items: center;
 
     height: 48px;
 
@@ -12,7 +50,7 @@
 
     border-radius: 0 24px 24px 0 !important;
 
-    transition: 0.2s ease;
+    transition: .2s;
 
 }
 
@@ -36,16 +74,32 @@
 
 .sidebar-item .MuiListItemIcon-root {
 
-    color: #5f6368;
-
     min-width: 48px;
+
+    color: #5f6368;
 
 }
 
 .sidebar-item .MuiTypography-root {
 
+    color: #202124;
+
     font-size: 14px;
 
     font-weight: 500;
+
+    white-space: nowrap;
+
+}
+
+.sidebar .MuiDrawer-paper:not(:hover) .MuiListItemText-root {
+
+    display: none;
+
+}
+
+.sidebar .MuiDrawer-paper:hover .MuiListItemText-root {
+
+    display: block;
 
 }

@@ -1,20 +1,17 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider } from "@mui/material/styles";
 
-import './index.css'
-import App from './App.jsx'
-import theme from "./assets/styles/theme";
+import App from "./App";
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
-      
-    </BrowserRouter>
-    
-  </StrictMode>,
-)
+import { SearchProvider } from "./context/SearchContext";
+
+createRoot(document.getElementById("root")).render(
+    <StrictMode>
+        <BrowserRouter>
+            <SearchProvider>
+                <App />
+            </SearchProvider>
+        </BrowserRouter>
+    </StrictMode>
+);

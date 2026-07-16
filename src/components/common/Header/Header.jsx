@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -21,22 +21,30 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import AppsOutlinedIcon from "@mui/icons-material/AppsOutlined";
 import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
 
+import { SearchContext } from "../../../context/SearchContext";
+
 import "./Header.css";
 
 function Header() {
 
     const navigate = useNavigate();
 
+    const { searchText, setSearchText } = useContext(SearchContext);
+
     const [anchorEl, setAnchorEl] = useState(null);
 
     const open = Boolean(anchorEl);
 
     const handleMenuOpen = (event) => {
+
         setAnchorEl(event.currentTarget);
+
     };
 
     const handleMenuClose = () => {
+
         setAnchorEl(null);
+
     };
 
     const handleLogout = () => {
@@ -46,6 +54,7 @@ function Header() {
         localStorage.removeItem("fullName");
 
         navigate("/login");
+
     };
 
     return (
@@ -90,6 +99,10 @@ function Header() {
                     <InputBase
                         placeholder="Search Notes"
                         className="search-input"
+                        value={searchText}
+                        onChange={(e) =>
+                            setSearchText(e.target.value)
+                        }
                     />
 
                 </Box>
@@ -117,11 +130,27 @@ function Header() {
                     <Avatar
                         className="profile-avatar"
                         onClick={handleMenuOpen}
-                        sx={{ cursor: "pointer" }}
+                        sx={{
+                            cursor: "pointer"
+                        }}
                     >
-                        {localStorage.getItem("fullName")
-                            ? localStorage.getItem("fullName")[0].toUpperCase()
-                            : "M"}
+
+                        {
+
+                            localStorage.getItem("fullName")
+
+                                ?
+
+                                localStorage
+                                    .getItem("fullName")[0]
+                                    .toUpperCase()
+
+                                :
+
+                                "M"
+
+                        }
+
                     </Avatar>
 
                     <Menu
@@ -130,22 +159,28 @@ function Header() {
                         onClose={handleMenuClose}
                         anchorOrigin={{
                             vertical: "bottom",
-                            horizontal: "right",
+                            horizontal: "right"
                         }}
                         transformOrigin={{
                             vertical: "top",
-                            horizontal: "right",
+                            horizontal: "right"
                         }}
                     >
 
                         <MenuItem disabled>
+
                             <strong>
+
                                 {localStorage.getItem("fullName")}
+
                             </strong>
+
                         </MenuItem>
 
                         <MenuItem disabled>
+
                             {localStorage.getItem("email")}
+
                         </MenuItem>
 
                         <Divider />
@@ -153,7 +188,9 @@ function Header() {
                         <MenuItem
                             onClick={handleLogout}
                         >
+
                             Logout
+
                         </MenuItem>
 
                     </Menu>
