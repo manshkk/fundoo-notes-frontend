@@ -6,6 +6,8 @@
 
     border-bottom: 1px solid #dadce0;
 
+    z-index: 1201 !important;
+
 }
 
 .header-toolbar{
@@ -15,6 +17,8 @@
     justify-content:space-between;
 
     align-items:center;
+
+    min-height: 64px !important;
 
     height:64px;
 

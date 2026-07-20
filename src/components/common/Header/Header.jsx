@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { SidebarContext } from "../../../context/SidebarContext";
 
 import {
     AppBar,
@@ -23,11 +24,14 @@ import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
 
 import { SearchContext } from "../../../context/SearchContext";
 
+
 import "./Header.css";
 
 function Header() {
 
     const navigate = useNavigate();
+
+    const { toggleSidebar } = useContext(SidebarContext);
 
     const { searchText, setSearchText } = useContext(SearchContext);
 
@@ -69,9 +73,11 @@ function Header() {
 
                 <Box className="header-left">
 
-                    <IconButton>
+                    <IconButton
+                            onClick={toggleSidebar}
+                    >
 
-                        <MenuIcon className="header-icon" />
+                            <MenuIcon className="header-icon" />
 
                     </IconButton>
 

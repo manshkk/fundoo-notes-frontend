@@ -22,6 +22,7 @@ import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
 import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 import ArchiveIcon from "@mui/icons-material/Archive";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
+import CollaboratorDialog from "../CollaboratorDialog/CollaboratorDialog";
 
 import noteService from "../../../services/noteService";
 
@@ -57,6 +58,8 @@ function NoteCard({
     const [menuAnchor, setMenuAnchor] = useState(null);
 
     const [showColors, setShowColors] = useState(false);
+
+    const [openCollaborator, setOpenCollaborator] = useState(false);
 
     const menuOpen = Boolean(menuAnchor);
 
@@ -219,8 +222,9 @@ function NoteCard({
         }
 
     };
-
     return (
+    <>
+
 
         <Card
             className="note-card"
@@ -336,15 +340,21 @@ function NoteCard({
 
                     <Tooltip title="Collaborator">
 
-                        <IconButton size="small">
+                            <IconButton
+                                size="small"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setOpenCollaborator(true);
+                                }}
+                            >
 
-                            <PersonAddAltOutlinedIcon
-                                fontSize="small"
-                            />
+                                <PersonAddAltOutlinedIcon
+                                    fontSize="small"
+                                />
 
-                        </IconButton>
+                            </IconButton>
 
-                    </Tooltip>
+                        </Tooltip>
 
                     <Box
                         sx={{
@@ -606,8 +616,19 @@ function NoteCard({
             </CardContent>
 
         </Card>
+                <CollaboratorDialog
+            open={openCollaborator}
+            onClose={() => setOpenCollaborator(false)}
+            noteId={note.id}
+        />
+
+    </>
+            
+        
 
     );
+    
+    
 
 }
 

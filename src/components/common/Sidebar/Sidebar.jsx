@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import {
@@ -14,12 +15,16 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 
+import { SidebarContext } from "../../../context/SidebarContext";
+
 import "./Sidebar.css";
 
 function Sidebar() {
 
     const navigate = useNavigate();
     const location = useLocation();
+
+    const { open } = useContext(SidebarContext);
 
     const menus = [
         {
@@ -53,7 +58,7 @@ function Sidebar() {
 
         <Drawer
             variant="permanent"
-            className="sidebar"
+            className={`sidebar ${open ? "sidebar-open" : ""}`}
         >
 
             <List>
@@ -75,9 +80,17 @@ function Sidebar() {
 
                             </ListItemIcon>
 
-                            <ListItemText
-                                primary={menu.text}
-                            />
+                            {
+
+                                open && (
+
+                                    <ListItemText
+                                        primary={menu.text}
+                                    />
+
+                                )
+
+                            }
 
                         </ListItemButton>
 

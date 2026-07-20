@@ -2,7 +2,11 @@
 
     width: 80px;
 
-    margin-top: 64px;
+    height: 100vh;
+
+    top: 0;
+
+    padding-top: 64px;
 
     overflow-x: hidden;
 
@@ -12,23 +16,12 @@
 
     transition: width .25s ease;
 
-}
+    z-index: 1100;
 
-.sidebar .MuiDrawer-paper:hover {
+}
+.sidebar-open .MuiDrawer-paper {
 
     width: 280px;
-
-}
-
-.sidebar-header {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    height: 60px;
 
 }
 
@@ -49,8 +42,6 @@
     margin: 4px 12px !important;
 
     border-radius: 0 24px 24px 0 !important;
-
-    transition: .2s;
 
 }
 
@@ -89,17 +80,5 @@
     font-weight: 500;
 
     white-space: nowrap;
-
-}
-
-.sidebar .MuiDrawer-paper:not(:hover) .MuiListItemText-root {
-
-    display: none;
-
-}
-
-.sidebar .MuiDrawer-paper:hover .MuiListItemText-root {
-
-    display: block;
 
 }
